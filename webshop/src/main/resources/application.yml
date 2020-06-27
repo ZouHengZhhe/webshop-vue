@@ -1,0 +1,8 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:mysql://49.235.46.126:33066/webshop_vue?serverTimezone=UTC&characterEncoding=utf8
+    username: root
+    password: yq5yS#d80BCSi4D!
+    driver-class-name: com.mysql.jdbc.Driver
