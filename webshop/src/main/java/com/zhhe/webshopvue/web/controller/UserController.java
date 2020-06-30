@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author ZouHeng
@@ -23,7 +23,7 @@ public class UserController {
     private IUserService userService;
 
     @RequestMapping("get")
-    public User get(Integer id){
+    public User get(Integer id) {
         return userService.getById(id);
     }
 }

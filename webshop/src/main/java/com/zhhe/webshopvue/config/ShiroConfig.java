@@ -4,6 +4,7 @@ import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -27,12 +28,12 @@ public class ShiroConfig {
         Map<String, String> map = new LinkedHashMap<>();
         //登出
         map.put("/logout", "logout");
-        //对所有用户认证
-        map.put("/**", "authc");
+        //后台对所有用户认证
+        map.put("/back/**", "authc");
+        //前台所有用户可以登录，匿名可以访问
+        map.put("/fore/**","anon");
         //登录
         shiroFilterFactoryBean.setLoginUrl("/login");
-        //首页
-        shiroFilterFactoryBean.setSuccessUrl("/index");
         //错误页面，认证不通过跳转
         shiroFilterFactoryBean.setUnauthorizedUrl("/error");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
@@ -41,7 +42,7 @@ public class ShiroConfig {
 
     @Bean
     public SecurityManager securityManager(){
-        DefaultSecurityManager securityManager = new DefaultSecurityManager();
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 
         //如果不是前后端分离，则不必设置下面的sessionManager
 //        securityManager.setSessionManager();
